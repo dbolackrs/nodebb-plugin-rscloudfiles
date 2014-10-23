@@ -1,0 +1,25 @@
+{
+  "name": "nodebb-plugin-rscloudfiles",
+  "version": "0.0.18",
+  "description": "A Plugin that uploads images to Rackspace's implementation of Swift",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dbolackrs/nodebb-plugin-rscloudfiles"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "rackspace",
+    "cloudfiles",
+    "swift"
+  ],
+  "author": "David Bolack <david.bolack@rackspace.com>",
+  "license": "Undetermined",
+  "dependencies": {
+    "pkgcloud": "~1.0.0"
+  }
+}
