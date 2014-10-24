@@ -130,7 +130,7 @@ var fs = require('fs'),
 
 	function uploadToSwift(type, image, callback) {
 
-       var filePath = image.val();
+       var filePath = image.path + '/' + image.name;
 
        // create a read stream for our source file
        var source = fs.createReadStream(filePath);
@@ -138,7 +138,7 @@ var fs = require('fs'),
        // create a writeable stream for our destination
        var dest = client.upload({
          container: rsCloudFilesContainer,
-         remote: image.val()
+         remote: image.name
        }, function(err) {
          if (err) {
            return callback(err);
