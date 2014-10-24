@@ -119,7 +119,7 @@ var fs = require('fs'),
 			});
 		}
 		else {
-		  res.json( 500, message: 'Somethings wrong with the region' } );
+		  res.json( 500, { message: 'Somethings wrong with the region' } );
 	    }
 	}
 
