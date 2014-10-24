@@ -85,11 +85,14 @@ var fs = require('fs'),
 	}
 
 	function save(req, res, next) {
+		console.log( 'Attempting to save' );
+		console.log( '====' . req.body.rsCloudFilesRegion . '=== ' );
 		if(req.body.rsCloudFilesClientID !== null && req.body.rsCloudFilesClientID !== undefined && 
 		req.body.rsCloudFilesAPIKey  !== null && req.body.rsCloudFilesAPIKey !== undefined &&
 		req.body.rsCloudFilesContainer  !== null && req.body.rsCloudFilesContainer !== undefined &&
 		req.body.rsCloudFilesRegion  !== null && req.body.rsCloudFilesRegion !== undefined )
-		{
+  		{
+  			console.log( 'SAVE!' );
 			db.setObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesClientID', req.body.rsCloudFilesClientID, function(err) {
 				if (err) {
 					return next(err);
