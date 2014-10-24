@@ -75,9 +75,6 @@ var fs = require('fs'),
   			    });
 			});
 		}
-		else {
-			res.json( 200, {message: 'Missing fields 1:' . req.body.rsCloudFilesClientID . ' 2:' . req.body.rsCloudFilesAPIKey . ' 3: ' . rsCloudFilesContainer } );
-		}
 	}
 
 	rscloudfiles.upload = function (image, callback) {
