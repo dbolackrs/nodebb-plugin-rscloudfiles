@@ -112,12 +112,15 @@ var fs = require('fs'),
 					            return next(err);
 				            }
   				            rsCloudFilesRegion = req.body.rsCloudFilesRegion;
-				        res.json(200, {message: 'Rackspace Credentials saved!'});
-  			        });
+				            res.json(200, {message: 'Rackspace Credentials saved!'});
+  			            });
 			        });
   			    });
 			});
 		}
+		else {
+		  res.json( 500, message: 'Somethings wrong with the region' } );
+	    }
 	}
 
 	rscloudfiles.upload = function (image, callback) {
