@@ -11,11 +11,11 @@ var fs = require('fs'),
 	    rsCloudFilesContainer = '';
 	
 
-	db.getObjectField('nodebb-plugin-rscloudfiles', 'rscloudfilesClientID', function(err, id) {
+	db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesClientID', function(err, id) {
 		if(err) {
 			return winston.error(err.message);
 		}
-		rscloudfilesClientID = id;
+		rsCloudFilesClientID = id;
 	});
 
 	rscloudfiles.init = function(app, middleware, controllers, callback) {
@@ -27,12 +27,28 @@ var fs = require('fs'),
 		callback();
 	};
 	function renderAdmin(req, res, next) {
-		db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesClientID', function(err, rscloudfilesClientID) {
+		db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesClientID', function(err, rsCloudFilesClientID) {
 			if (err) {
 				return next(err);
 			}
 
 			res.render('admin/plugins/rscloudfiles', {rsCloudFilesClientID: rsCloudFilesClientID, csrf: req.csrfToken()});
+		});
+
+		db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesAPIKey', function(err, rsCloudFilesAPIKey) {
+			if (err) {
+				return next(err);
+			}
+
+			res.render('admin/plugins/rscloudfiles', {rsCloudFilesAPIKey: rsCloudFilesAPIKey, csrf: req.csrfToken()});
+		});
+
+		db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesContainer', function(err, rsCloudFilesContainer) {
+			if (err) {
+				return next(err);
+			}
+
+			res.render('admin/plugins/rscloudfiles', {rsCloudFilesContainer: rsCloudFilesContainer, csrf: req.csrfToken()});
 		});
 	}
 
@@ -58,7 +74,7 @@ var fs = require('fs'),
 					        return next(err);
 				        }
 
-				        rscloudfilesClientID = req.body.rsCloudFilesContainer;
+				        rsCloudFilesClientID = req.body.rsCloudFilesContainer;
 				        res.json(200, {message: 'Rackspace Redentials saved!'});
 			        });
   			    });
