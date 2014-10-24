@@ -40,14 +40,6 @@ var fs = require('fs'),
 		rsCloudFilesRegion = region;
 	});
 	
-	var client = pkgcloud.storage.createClient({
-     provider: 'rackspace',
-     username: rsCloudFilesClientID,
-     apiKey: rsCloudFilesAPIKey,
-     region: rsCloudFilesRegion
-    });
-
-
 	rscloudfiles.init = function(app, middleware, controllers, callback) {
 
 		app.get('/admin/plugins/rscloudfiles', middleware.applyCSRF, middleware.admin.buildHeader, renderAdmin);
@@ -166,9 +158,16 @@ var fs = require('fs'),
 
 	function uploadToSwift(type, image, originalName, callback) {
 
+  	   var client = pkgcloud.storage.createClient({
+         provider: 'rackspace',
+         username: rsCloudFilesClientID,
+         apiKey: rsCloudFilesAPIKey,
+         region: rsCloudFilesRegion
+       }  );
+
        var filePath = image.path;
        
-       console.log ( 'FILEPATH: ' + filePath );
+       console.log ( client );
        console.log( image );
 
        // create a read stream for our source file
