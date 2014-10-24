@@ -86,7 +86,7 @@ var fs = require('fs'),
 
 	function save(req, res, next) {
 		console.log( 'Attempting to save' );
-		console.log( '====' . req.body.rsCloudFilesRegion . '=== ' );
+		console.log( '====' + req.body.rsCloudFilesRegion + '=== ' );
 		if(req.body.rsCloudFilesClientID !== null && req.body.rsCloudFilesClientID !== undefined && 
 		req.body.rsCloudFilesAPIKey  !== null && req.body.rsCloudFilesAPIKey !== undefined &&
 		req.body.rsCloudFilesContainer  !== null && req.body.rsCloudFilesContainer !== undefined &&

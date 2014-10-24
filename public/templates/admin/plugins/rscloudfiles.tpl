@@ -34,7 +34,7 @@
 	$('#save').on('click', function() {
 
 		$.post('/api/admin/plugins/rscloudfiles/save', {_csrf : $('#csrf_token').val(), rsCloudFilesClientID : $('#rsCloudFilesClientID').val(), 
-		    rsCloudFilesAPIKey : $('#rsCloudFilesAPIKey').val(), rsCloudFilesContainer : $('#rsCloudFilesContainer').val()}, function(data) {
+		    rsCloudFilesAPIKey : $('#rsCloudFilesAPIKey').val(), rsCloudFilesRegion : $('#rsCloudFilesRegion').val(), rsCloudFilesContainer : $('#rsCloudFilesContainer').val()}, function(data) {
 			app.alertSuccess(data.message);
 		});
 
