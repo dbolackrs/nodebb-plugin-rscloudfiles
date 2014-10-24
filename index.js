@@ -18,6 +18,20 @@ var fs = require('fs'),
 		rsCloudFilesClientID = id;
 	});
 
+	db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesAPIKey', function(err, apikey) {
+		if(err) {
+			return winston.error(err.message);
+		}
+		rsCloudFilesAPIKey = apikey;
+	});
+
+	db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesContainer', function(err, container) {
+		if(err) {
+			return winston.error(err.message);
+		}
+		rsCloudFilesContainer = container;
+	});
+
 	rscloudfiles.init = function(app, middleware, controllers, callback) {
 
 		app.get('/admin/plugins/rscloudfiles', middleware.applyCSRF, middleware.admin.buildHeader, renderAdmin);
@@ -26,6 +40,7 @@ var fs = require('fs'),
 		app.post('/api/admin/plugins/rscloudfiles/save', middleware.applyCSRF, save);
 		callback();
 	};
+
 	function renderAdmin(req, res, next) {
 		db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesClientID', function(err, rsCloudFilesClientID) {
 			if (err) {
