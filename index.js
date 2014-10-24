@@ -167,9 +167,6 @@ var fs = require('fs'),
 
        var filePath = image.path;
        
-       console.log ( client );
-       console.log( image );
-
        // create a read stream for our source file
        var source = fs.createReadStream(filePath);
 
@@ -186,6 +183,7 @@ var fs = require('fs'),
 
        // pipe the source to the destination
        source.pipe(dest);
+       res.json(200, {message: 'Rackspace Credentials saved!'});
    }
 
 	var admin = {};
