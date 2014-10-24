@@ -164,7 +164,7 @@ var fs = require('fs'),
 		});
 	};
 
-	function uploadToSwift(type, image, originalNamecallback) {
+	function uploadToSwift(type, image, originalName, callback) {
 
        var filePath = image.path;
        
@@ -177,7 +177,7 @@ var fs = require('fs'),
        // create a writeable stream for our destination
        var dest = client.upload({
          container: rsCloudFilesContainer,
-         remote: image.name
+         remote: originalName
        }, function(err) {
          if (err) {
            return callback(err);
