@@ -13,6 +13,10 @@
 				<input id="rsCloudFilesAPIKey" type="text" class="form-control" placeholder="Enter Rackspace Cloud API Key" value="{rsCloudFilesAPIKey}">
 			</div>
 			<div class="form-group">
+				<label>Datacenter Region</label>
+				<input id="rsCloudFilesRegion" type="text" class="form-control" placeholder="Enter Rackspace Cloud Datacenter Region" value="{rsCloudFilesRegion}">
+			</div>
+			<div class="form-group">
 				<label>Container/Bucket</label>
 				<input id="rsCloudFilesContainer" type="text" class="form-control" placeholder="Enter Rackspace CloudFiles Container to use" value="{rsCloudFilesContainer}">
 			</div>
