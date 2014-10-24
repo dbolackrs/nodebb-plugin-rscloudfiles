@@ -70,10 +70,13 @@ var fs = require('fs'),
 				        }
 
 				        rsCloudFilesClientID = req.body.rsCloudFilesContainer;
-				        res.json(200, {message: 'Rackspace Redentials saved!'});
+				        res.json(200, {message: 'Rackspace Credentials saved!'});
 			        });
   			    });
 			});
+		}
+		else {
+			res.json( 200, {message: 'Missing fields 1:' . req.body.rsCloudFilesClientID . ' 2:' . req.body.rsCloudFilesAPIKey . ' 3: ' . rsCloudFilesContainer } );
 		}
 	}
 

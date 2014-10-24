@@ -6,14 +6,14 @@
 		<div class="col-sm-4 col-xs-12">
 			<div class="form-group">
 				<label>Rackspace Cloud User</label>
-				<input id="rsCloudFfilesClientID" type="text" class="form-control" placeholder="Enter Rackspace Cloud User ID" value="{rsCloudFilesClientID}">
+				<input id="rsCloudFilesClientID" type="text" class="form-control" placeholder="Enter Rackspace Cloud User ID" value="{rsCloudFilesClientID}">
 			</div>
 			<div class="form-group">
 				<label>API Key</label>
 				<input id="rsCloudFilesAPIKey" type="text" class="form-control" placeholder="Enter Rackspace Cloud API Key" value="{rsCloudFilesAPIKey}">
 			</div>
 			<div class="form-group">
-				<label>API Key</label>
+				<label>Container/Bucket</label>
 				<input id="rsCloudFilesContainer" type="text" class="form-control" placeholder="Enter Rackspace CloudFiles Container to use" value="{rsCloudFilesContainer}">
 			</div>
 		</div>
