@@ -31,25 +31,20 @@ var fs = require('fs'),
 			if (err) {
 				return next(err);
 			}
-
-			res.render('admin/plugins/rscloudfiles', {rsCloudFilesClientID: rsCloudFilesClientID, csrf: req.csrfToken()});
 		});
 
 		db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesAPIKey', function(err, rsCloudFilesAPIKey) {
 			if (err) {
 				return next(err);
 			}
-
-			res.render('admin/plugins/rscloudfiles', {rsCloudFilesAPIKey: rsCloudFilesAPIKey, csrf: req.csrfToken()});
 		});
 
 		db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesContainer', function(err, rsCloudFilesContainer) {
 			if (err) {
 				return next(err);
 			}
-
-			res.render('admin/plugins/rscloudfiles', {rsCloudFilesContainer: rsCloudFilesContainer, csrf: req.csrfToken()});
 		});
+		res.render('admin/plugins/rscloudfiles', {rsCloudFilesClientID: rsCloudFilesClientID, rsCloudFilesAPIKey: rsCloudFilesAPIKey, rsCloudFilesContainer: rsCloudFilesContainer,csrf: req.csrfToken()});
 	}
 
 	function save(req, res, next) {
