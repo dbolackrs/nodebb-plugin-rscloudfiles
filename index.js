@@ -85,14 +85,11 @@ var fs = require('fs'),
 	}
 
 	function save(req, res, next) {
-		console.log( 'Attempting to save' );
-		console.log( '====' + req.body.rsCloudFilesRegion + '=== ' );
 		if(req.body.rsCloudFilesClientID !== null && req.body.rsCloudFilesClientID !== undefined && 
 		req.body.rsCloudFilesAPIKey  !== null && req.body.rsCloudFilesAPIKey !== undefined &&
 		req.body.rsCloudFilesContainer  !== null && req.body.rsCloudFilesContainer !== undefined &&
 		req.body.rsCloudFilesRegion  !== null && req.body.rsCloudFilesRegion !== undefined )
   		{
-  			console.log( 'SAVE!' );
 			db.setObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesClientID', req.body.rsCloudFilesClientID, function(err) {
 				if (err) {
 					return next(err);
@@ -155,7 +152,7 @@ var fs = require('fs'),
 
 		var imageData = type === 'file' ? fs.createReadStream(image.path) : image.url;
 
-		uploadToSwift(type, imageData, function(err, data) {
+		uploadToSwift(type, imageData, image.originalFilename, function(err, data) {
 			if (err) {
 				return callback(err);
 			}
@@ -167,9 +164,12 @@ var fs = require('fs'),
 		});
 	};
 
-	function uploadToSwift(type, image, callback) {
+	function uploadToSwift(type, image, originalNamecallback) {
 
-       var filePath = image.path + '/' + image.name;
+       var filePath = image.path;
+       
+       console.log ( 'FILEPATH: ' + filePath );
+       console.log( image );
 
        // create a read stream for our source file
        var source = fs.createReadStream(filePath);
