@@ -72,19 +72,18 @@ var fs = require('fs'),
 					return next(err);
 				}
 
-				rsCloudFilesAPIKey = req.body.rsCloudFilesAPIKey;
+		        rsCloudFilesClientID = req.body.rsCloudFilesClientID;
 			    db.setObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesAPIKey', req.body.rsCloudFilesAPIKey, function(err) {
 				    if (err) {
 					    return next(err);
 			 	    }
 
-				    rsCloudFilesContainer = req.body.rsCloudFilesContainer;
+				    rsCloudFilesAPIKey = req.body.rsCloudFilesAPIKey;
    			        db.setObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesContainer', req.body.rsCloudFilesContainer, function(err) {
 				        if (err) {
 					        return next(err);
 				        }
-
-				        rsCloudFilesClientID = req.body.rsCloudFilesContainer;
+  				        rsCloudFilesContainer = req.body.rsCloudFilesContainer;
 				        res.json(200, {message: 'Rackspace Credentials saved!'});
 			        });
   			    });
