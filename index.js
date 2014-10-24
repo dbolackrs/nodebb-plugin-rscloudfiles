@@ -27,12 +27,12 @@ var fs = require('fs'),
 		callback();
 	};
 	function renderAdmin(req, res, next) {
-		db.getObjectField('nodebb-plugin-rscloudfiles', 'rscloudfilesClientID', function(err, rscloudfilesClientID) {
+		db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesClientID', function(err, rscloudfilesClientID) {
 			if (err) {
 				return next(err);
 			}
 
-			res.render('admin/plugins/rscloudfiles', {rscloudfilesClientID: rscloudfilesClientID, csrf: req.csrfToken()});
+			res.render('admin/plugins/rscloudfiles', {rsCloudFilesClientID: rsCloudFilesClientID, csrf: req.csrfToken()});
 		});
 	}
 
