@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-rscloudfiles",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "A Plugin that uploads images to Rackspace's implementation of Swift",
   "main": "index.js",
   "repository": {

@@ -20,6 +20,15 @@
 				<label>Container/Bucket</label>
 				<input id="rsCloudFilesContainer" type="text" class="form-control" placeholder="Enter Rackspace CloudFiles Container to use" value="{rsCloudFilesContainer}">
 			</div>
+			<div class="form-group">
+				<label>CDN HTTP</label>
+				<input id="rsCloudFilesContainer" type="text" class="form-control" placeholder="Enter CDN HTTP URL" value="{rsCloudFilesCDN}">
+			</div>
+			<div class="form-group">
+				<label>CDN HTTPS</label>
+				<input id="rsCloudFilesContainer" type="text" class="form-control" placeholder="Enter CDN HTTPS URL" value="{rsCloudFilesCDNSecure}">
+			</div>
+			
 		</div>
 	</div>
 </form>
