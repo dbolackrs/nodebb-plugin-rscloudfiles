@@ -9,9 +9,9 @@ var fs = require('fs'),
 	var rsCloudFilesClientID = '',
 	    rsCloudFilesAPIKey = '',
 	    rsCloudFilesContainer = '',
-	    rsCloudFilesRegion,
-	    rsCloudFilesCDN,
-	    rsCloudFilesCDNSecure;
+	    rsCloudFilesRegion='',
+	    rsCloudFilesCDN='',
+	    rsCloudFilesCDNSecure='';
 	
 
 	db.getObjectField('nodebb-plugin-rscloudfiles', 'rsCloudFilesClientID', function(err, id) {
@@ -100,7 +100,7 @@ var fs = require('fs'),
 			}
 		});
 
-		res.render('admin/plugins/rscloudfiles', {rsCloudFilesClientID: rsCloudFilesClientID, rsCloudFilesAPIKey: rsCloudFilesAPIKey, rsCloudFilesContainer: rsCloudFilesContainer, rsCloudFilesRegion: rsCloudFilesRegion, csrf: req.csrfToken()});
+		res.render('admin/plugins/rscloudfiles', {rsCloudFilesClientID: rsCloudFilesClientID, rsCloudFilesAPIKey: rsCloudFilesAPIKey, rsCloudFilesContainer: rsCloudFilesContainer, rsCloudFilesRegion: rsCloudFilesRegion, rsCloudFilesCDN: rsCloudFilesCDN, rsCloudFilesCDNSecure:rsCloudFilesCDNSecure, csrf: req.csrfToken()});
 	}
 
 	function save(req, res, next) {
@@ -141,7 +141,7 @@ var fs = require('fs'),
 			        		            return next(err);
 				                    }
                                     rsCloudFilesRegion = req.body.rsCloudFilesRegion;
-				                    res.json(200, {message: 'Rackspace Credentials saved!'});
+				                    res.status(200).json({message: 'Rackspace Credentials saved!'});
 				                });
 				            });    
   			            });
@@ -150,11 +150,19 @@ var fs = require('fs'),
 			});
 		}
 		else {
-		  res.json( 500, { message: 'Somethings wrong with the region' } );
+		  res.status(500).json( { message: 'Somethings wrong with the region' } );
 	    }
 	}
 
-	rscloudfiles.upload = function ( data, userid, callback) {
+	rscloudfiles.upload = function ( data, callback) {
+		if (!rsCloudFilesCDN) {
+			return callback(new Error('invalid-rscloudfiles-CDN'));
+		}
+
+		if (!rsCloudFilesCDNSecure) {
+			return callback(new Error('invalid-rscloudfiles-CDNSecure'));
+		}
+
 		if (!rsCloudFilesClientID) {
 			return callback(new Error('invalid-rscloudfiles-client-id'));
 		}
@@ -170,6 +178,8 @@ var fs = require('fs'),
 		if (!rsCloudFilesRegion) {
 			return callback(new Error('invalid-rscloudfiles-region'));
 		}
+
+		
 		
 		var image = data.image;
 
@@ -190,11 +200,11 @@ var fs = require('fs'),
 				return callback(err);
 			}
 
-			callback(null, {
-				url: rsCloudFilesCDNSecure + '/' + image.name,
-				name: image.name || ''
-			});
-		});
+        callback(null, {
+             url: rsCloudFilesCDNSecure + '/' + image.name,
+             name: image.name || ''
+        });
+      });
 	};
 
 	function uploadToSwift(type, image, originalName, callback) {

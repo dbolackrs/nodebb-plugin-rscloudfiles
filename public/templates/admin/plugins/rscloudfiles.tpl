@@ -22,11 +22,11 @@
 			</div>
 			<div class="form-group">
 				<label>CDN HTTP</label>
-				<input id="rsCloudFilesContainer" type="text" class="form-control" placeholder="Enter CDN HTTP URL" value="{rsCloudFilesCDN}">
+				<input id="rsCloudFilesCDN" type="text" class="form-control" placeholder="Enter CDN HTTP URL" value="{rsCloudFilesCDN}">
 			</div>
 			<div class="form-group">
 				<label>CDN HTTPS</label>
-				<input id="rsCloudFilesContainer" type="text" class="form-control" placeholder="Enter CDN HTTPS URL" value="{rsCloudFilesCDNSecure}">
+				<input id="rsCloudFilesCDNSecure" type="text" class="form-control" placeholder="Enter CDN HTTPS URL" value="{rsCloudFilesCDNSecure}">
 			</div>
 			
 		</div>
@@ -43,7 +43,8 @@
 	$('#save').on('click', function() {
 
 		$.post('/api/admin/plugins/rscloudfiles/save', {_csrf : $('#csrf_token').val(), rsCloudFilesClientID : $('#rsCloudFilesClientID').val(), 
-		    rsCloudFilesAPIKey : $('#rsCloudFilesAPIKey').val(), rsCloudFilesRegion : $('#rsCloudFilesRegion').val(), rsCloudFilesContainer : $('#rsCloudFilesContainer').val()}, function(data) {
+		    rsCloudFilesAPIKey : $('#rsCloudFilesAPIKey').val(), rsCloudFilesRegion : $('#rsCloudFilesRegion').val(), rsCloudFilesContainer : $('#rsCloudFilesContainer').val(), 
+		    rsCloudFilesCDN : $('#rsCloudFilesCDN').val(), rsCloudFilesCDNSecure : $('#rsCloudFilesCDNSecure').val()}, function(data) {
 			app.alertSuccess(data.message);
 		});
 
